@@ -1,0 +1,40 @@
+#header {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+
+  background: var(--surface);
+
+  .searchWrapper {
+    width: 50%;
+  }
+
+  @media (max-width: 800) {
+    flex-direction: column;
+    padding-bottom: 10px;
+
+    .searchWrapper {
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    background: var(--surface-hover);
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: 20px;
+
+  h1 {
+    transform: translateX(-10px);
+  }
+}

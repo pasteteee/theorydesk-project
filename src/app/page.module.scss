@@ -1,0 +1,39 @@
+.interfaceWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  min-height: 100vh;
+  padding: 1.5rem;
+
+  /* Desktop Layout */
+  @media (min-width: 1024px) {
+    grid-template-areas: 
+    "library library trands"
+    "con pro stats"
+    "con pro filter";
+  }
+
+  .library {
+    grid-area: library;
+  }
+
+  .pro {
+    grid-area: pro;
+  }
+
+  .con {
+    grid-area: con;
+  }
+
+  .trands {
+    grid-area: trands;
+  }
+
+  .filters {
+    grid-area: filters;
+  }
+
+  .stats {
+    grid-area: stats;
+  }
+}
