@@ -1,0 +1,57 @@
+.library {
+  background-color: var(--surface);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  height: fit-content;
+  grid-area: library;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--primary);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: var(--text-main);
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.9rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--primary);
+  color: #000;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--primary-hover);
+  }
+}

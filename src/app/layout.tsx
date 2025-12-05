@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 import Header from "@components/Header/Header";
 
 const montserrat = Montserrat({
@@ -24,13 +23,6 @@ export default function RootLayout({
       <body className={`${montserrat.variable}`}>
         <Header />
         {children}
-        <Image
-          className="bg-illustration"
-          src="/background-illustration.png"
-          alt="Background illustration"
-          width={100}
-          height={100}
-        />
       </body>
     </html>
   );

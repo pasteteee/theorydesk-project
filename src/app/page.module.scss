@@ -7,10 +7,10 @@
 
   /* Desktop Layout */
   @media (min-width: 1024px) {
-    grid-template-areas: 
-    "library library trands"
-    "con pro stats"
-    "con pro filter";
+    grid-template-areas:
+      "library library trands"
+      "con pro stats"
+      "con pro filter";
   }
 
   .library {
