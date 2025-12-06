@@ -16,11 +16,14 @@
   --danger-dim: rgba(239, 68, 68, 0.1);
 
   --border: #334155;
+
+  --input-bg: rgba(0, 0, 0, 0.2);
 }
 
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {

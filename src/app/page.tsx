@@ -20,9 +20,9 @@ import { useBoardStore } from "@/hooks/useBoardStore";
 import Column from "@components/CardList/Column";
 import LibraryFact from "@components/LibraryFact/LibraryFact";
 import FactCard from "@components/Card/FactCard";
+import Loader from "@components/Loader/Loader";
 import { Fact } from "@/types";
 import styles from "./page.module.scss";
-import Loader from "@components/Loader/Loader";
 
 const dropAnimation: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
@@ -77,13 +77,8 @@ export default function Home() {
     const activeContainer = findContainer(active.id as string);
     const overContainer = findContainer(overId as string);
 
-    if (
-      !activeContainer ||
-      !overContainer ||
-      activeContainer === overContainer
-    ) {
+    if (!activeContainer || !overContainer || activeContainer === overContainer)
       return;
-    }
 
     setBoard((prev) => {
       if (!prev) return null;
@@ -184,34 +179,38 @@ export default function Home() {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className={styles.interfaceWrapper}>
-        <div className={styles.library}>
-          <LibraryFact onAdd={addFact} />
-        </div>
+      <div className={styles.wrapper}>
+        <div className={styles.interfaceWrapper}>
+          <div className={styles.library}>
+            <LibraryFact onAdd={addFact} />
+          </div>
 
-        <div className={styles.trands}>
-          <LibraryFact onAdd={addFact} />
-        </div>
+          <div className={styles.trands}>
+            <LibraryFact onAdd={addFact} />
+          </div>
 
-        <div className={styles.pro}>
-          <Column
-            column={board.columns.pro}
-            onDeleteFact={deleteFact}
-            onVoteFact={updateScore}
-          />
-        </div>
+          <div className={styles.pro}>
+            <Column
+              className="pro"
+              column={board.columns.pro}
+              onDeleteFact={deleteFact}
+              onVoteFact={updateScore}
+            />
+          </div>
 
-        <div className={styles.con}>
-          <Column
-            column={board.columns.con}
-            onDeleteFact={deleteFact}
-            onVoteFact={updateScore}
-          />
-        </div>
+          <div className={styles.con}>
+            <Column
+              className="con"
+              column={board.columns.con}
+              onDeleteFact={deleteFact}
+              onVoteFact={updateScore}
+            />
+          </div>
 
-        <DragOverlay dropAnimation={dropAnimation}>
-          {activeFact ? <FactCard fact={activeFact} /> : null}
-        </DragOverlay>
+          <DragOverlay dropAnimation={dropAnimation}>
+            {activeFact ? <FactCard fact={activeFact} /> : null}
+          </DragOverlay>
+        </div>
       </div>
     </DndContext>
   );

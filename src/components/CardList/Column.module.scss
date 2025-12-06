@@ -1,5 +1,5 @@
 .column {
-  background-color: rgba(30, 41, 59, 0.5); /* Semi-transparent surface */
+  background-color: rgba(30, 41, 59, 0.5);
   border-radius: 1rem;
   padding: 1rem;
   border: 1px solid var(--border);
@@ -7,6 +7,14 @@
   flex-direction: column;
   height: 100%;
   min-height: 500px;
+
+  &[data-id="con"] h2 {
+    color: var(--danger);
+  }
+
+  &[data-id="pro"] h2 {
+    color: var(--success);
+  }
 }
 
 .title {
@@ -35,5 +43,5 @@
   flex-direction: column;
   gap: 0.5rem;
   overflow-y: auto;
-  min-height: 100px; /* Ensure drop target is reachable */
+  min-height: 100px;
 }

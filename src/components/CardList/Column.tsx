@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -29,7 +28,7 @@ export default function Column({
   });
 
   return (
-    <div className={clsx(styles.column, className)}>
+    <div className={clsx(styles.column, className)} data-id={className}>
       <h2 className={styles.title}>
         {column.title}
         <span className={styles.count}>{column.facts.length}</span>
