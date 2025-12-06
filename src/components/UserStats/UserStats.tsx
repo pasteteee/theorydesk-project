@@ -12,14 +12,14 @@ export default function UserStats({ statistics }: TUserStats) {
       <h3>UserStats</h3>
       <hr />
 
-      <div className="pro">
+      <div className="con">
         <p>Evidence Against</p>
-        <VisualLine value={statistics.pro} color="var(--danger)" />
+        <VisualLine value={statistics.con} color="var(--danger)" />
       </div>
 
-      <div className="con">
+      <div className="pro">
         <p>Evidence For</p>
-        <VisualLine value={statistics.con} color="var(--success)" />
+        <VisualLine value={statistics.pro} color="var(--success)" />
       </div>
     </div>
   );
