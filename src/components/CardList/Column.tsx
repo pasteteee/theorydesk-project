@@ -13,6 +13,7 @@ interface TColumnProps {
   className?: string;
   onDeleteFact?: (id: string) => void;
   onVoteFact?: (id: string, delta: number) => void;
+  highlightedFactId?: string | null;
 }
 
 export default function Column({
@@ -20,6 +21,7 @@ export default function Column({
   className,
   onDeleteFact,
   onVoteFact,
+  highlightedFactId,
 }: TColumnProps) {
   const { setNodeRef } = useDroppable({
     id: column.id,
@@ -42,6 +44,7 @@ export default function Column({
               fact={fact}
               onDelete={onDeleteFact}
               onVote={onVoteFact}
+              isHighlighted={fact.id === highlightedFactId}
             />
           ))}
         </SortableContext>

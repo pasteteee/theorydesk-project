@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { ChevronUp, ChevronDown, GripVertical, Trash2 } from "lucide-react";
 import { TFact } from "@/types";
+import clsx from "clsx";
 import styles from "./FactCard.module.scss";
 
 interface TFactCardProps {
@@ -10,6 +11,7 @@ interface TFactCardProps {
   onDelete?: (id: string) => void;
   onVote?: (id: string, delta: number) => void;
   isNotDraggable?: boolean;
+  isHighlighted?: boolean;
 }
 
 export default function FactCard({
@@ -17,7 +19,9 @@ export default function FactCard({
   onDelete,
   onVote,
   isNotDraggable,
+  isHighlighted,
 }: TFactCardProps) {
+  const cardRef = useRef<HTMLElement>(null);
   const {
     attributes,
     listeners,
@@ -27,6 +31,15 @@ export default function FactCard({
     isDragging,
   } = useSortable({ id: fact.id, data: { ...fact } });
 
+  useEffect(() => {
+    if (isHighlighted && cardRef.current) {
+      cardRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [isHighlighted]);
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -34,7 +47,14 @@ export default function FactCard({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={styles.card}>
+    <div
+      ref={(node) => {
+        setNodeRef(node);
+        cardRef.current = node;
+      }}
+      style={style}
+      className={clsx(styles.card, isHighlighted && styles.highlighted)}
+    >
       {!isNotDraggable && (
         <div className={styles.dragHandle} {...attributes} {...listeners}>
           <GripVertical size={16} />

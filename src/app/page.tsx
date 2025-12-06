@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -37,11 +37,28 @@ const dropAnimation: DropAnimation = {
     },
   }),
 };
-
 export default function Home() {
   const { board, setBoard, addFact, deleteFact, updateScore, sortFacts } =
     useBoardStore();
   const [activeFact, setActiveFact] = React.useState<TFact | null>(null);
+  const [highlightedFactId, setHighlightedFactId] = React.useState<
+    string | null
+  >(null);
+
+  useEffect(() => {
+    const handleHighlight = (event: CustomEvent) => {
+      const { id } = event.detail;
+      setHighlightedFactId(id);
+      setTimeout(() => setHighlightedFactId(null), 1000);
+    };
+
+    // @ts-expect-error - CustomEvent type
+    window.addEventListener("highlight-fact", handleHighlight);
+    return () => {
+      // @ts-expect-error - CustomEvent type
+      window.removeEventListener("highlight-fact", handleHighlight);
+    };
+  }, []);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -214,6 +231,7 @@ export default function Home() {
               column={board.columns.pro}
               onDeleteFact={deleteFact}
               onVoteFact={updateScore}
+              highlightedFactId={highlightedFactId}
             />
           </div>
 
@@ -223,6 +241,7 @@ export default function Home() {
               column={board.columns.con}
               onDeleteFact={deleteFact}
               onVoteFact={updateScore}
+              highlightedFactId={highlightedFactId}
             />
           </div>
 
