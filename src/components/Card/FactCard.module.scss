@@ -17,7 +17,7 @@
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     .deleteBtn {
-      opacity: 1;
+      display: block;
     }
   }
 }
@@ -80,9 +80,9 @@
   border: none;
   color: var(--danger);
   cursor: pointer;
-  opacity: 0;
   transition: opacity 0.2s;
   padding: 4px;
+  display: none;
 
   &:hover {
     color: #ff6b6b;
