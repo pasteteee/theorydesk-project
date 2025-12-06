@@ -1,0 +1,41 @@
+.filterControl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--surface);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  height: 100%;
+  grid-area: trends;
+  text-align: center;
+
+  h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+  }
+
+  .wrapperButtons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    button {
+      height: 100%;
+      border-radius: 10px;
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-weight: 700;
+      font-family: var(--family-montserrat);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}

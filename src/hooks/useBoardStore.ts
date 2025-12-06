@@ -84,5 +84,22 @@ export function useBoardStore() {
     });
   };
 
-  return { board, setBoard, addFact, deleteFact, updateScore };
+  const sortFacts = (compareFn: (a: TFact, b: TFact) => number) => {
+    setBoard((prev) => {
+      if (!prev) return null;
+      const newColumns = { ...prev.columns };
+
+      for (const colId in newColumns) {
+        const colKey = colId as TFactType;
+        newColumns[colKey] = {
+          ...newColumns[colKey],
+          facts: [...newColumns[colKey].facts].sort(compareFn),
+        };
+      }
+
+      return { ...prev, columns: newColumns };
+    });
+  };
+
+  return { board, setBoard, addFact, deleteFact, updateScore, sortFacts };
 }

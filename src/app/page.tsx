@@ -22,7 +22,8 @@ import LibraryFact from "@components/LibraryFact/LibraryFact";
 import FactCard from "@components/Card/FactCard";
 import Loader from "@components/Loader/Loader";
 import Trends from "@components/Trends/Trends";
-import UserStats from "@/components/UserStats/UserStats";
+import FilterControl from "@components/FilterControl/FilterControl";
+import UserStats from "@components/UserStats/UserStats";
 import { TBoardState, TFact } from "@/types";
 import styles from "./page.module.scss";
 import { getBestFact, getStatistics } from "@/utils/TheoryUtils";
@@ -38,7 +39,8 @@ const dropAnimation: DropAnimation = {
 };
 
 export default function Home() {
-  const { board, setBoard, addFact, deleteFact, updateScore } = useBoardStore();
+  const { board, setBoard, addFact, deleteFact, updateScore, sortFacts } =
+    useBoardStore();
   const [activeFact, setActiveFact] = React.useState<TFact | null>(null);
 
   const sensors = useSensors(
@@ -191,7 +193,7 @@ export default function Home() {
           </div>
 
           <div className={styles.filter}>
-            <LibraryFact onAdd={addFact} />
+            <FilterControl sortFacts={sortFacts} />
           </div>
 
           <div className={styles.stats}>

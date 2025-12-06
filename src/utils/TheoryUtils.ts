@@ -24,8 +24,6 @@ export function getStatistics(board: TBoardState): TStatistics {
     conLength = conArray.length,
     absoluteLength = conLength + proLength;
 
-  console.log(proLength, conLength, absoluteLength);
-
   if (!proArray || !conArray) return { pro: 0, con: 0 };
   return {
     pro: (proLength / absoluteLength) * 100,
