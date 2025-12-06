@@ -46,5 +46,6 @@
   .fill {
     border-radius: 10px;
     height: 100%;
+    transition: width 0.5s ease;
   }
 }
