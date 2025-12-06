@@ -16,6 +16,7 @@ export default function Trends({
   return (
     <div className={styles.trends}>
       <h3>Trending theory</h3>
+      <hr />
       <div className={styles.wrapperContent}>
         {currentTheory ? (
           <FactCard

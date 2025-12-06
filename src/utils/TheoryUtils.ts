@@ -1,4 +1,4 @@
-import { TBoardState, TFact } from "@/types";
+import { TBoardState, TFact, TStatistics } from "@/types";
 
 export function getBestFact(board: TBoardState): TFact | null {
   const proArray: TFact[] = board.columns.pro.facts;
@@ -15,4 +15,20 @@ export function getBestFact(board: TBoardState): TFact | null {
   });
 
   return result;
+}
+
+export function getStatistics(board: TBoardState): TStatistics {
+  const proArray: TFact[] = board.columns.pro.facts;
+  const conArray: TFact[] = board.columns.con.facts;
+  const proLength = proArray.length,
+    conLength = conArray.length,
+    absoluteLength = conLength + proLength;
+
+  console.log(proLength, conLength, absoluteLength);
+
+  if (!proArray || !conArray) return { pro: 0, con: 0 };
+  return {
+    pro: (proLength / absoluteLength) * 100,
+    con: (conLength / absoluteLength) * 100,
+  };
 }

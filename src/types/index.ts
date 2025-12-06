@@ -1,4 +1,4 @@
-export type TFactType = 'pro' | 'con';
+export type TFactType = "pro" | "con";
 
 export interface TFact {
   id: string;
@@ -17,4 +17,9 @@ export interface TBoardState {
   columns: {
     [key in TFactType]: TColumnData;
   };
+}
+
+export interface TStatistics {
+  pro: number;
+  con: number;
 }

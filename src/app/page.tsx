@@ -22,9 +22,10 @@ import LibraryFact from "@components/LibraryFact/LibraryFact";
 import FactCard from "@components/Card/FactCard";
 import Loader from "@components/Loader/Loader";
 import Trends from "@components/Trends/Trends";
+import UserStats from "@/components/UserStats/UserStats";
 import { TBoardState, TFact } from "@/types";
 import styles from "./page.module.scss";
-import { getBestFact } from "@/utils/TheoryUtils";
+import { getBestFact, getStatistics } from "@/utils/TheoryUtils";
 
 const dropAnimation: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
@@ -191,6 +192,10 @@ export default function Home() {
 
           <div className={styles.filter}>
             <LibraryFact onAdd={addFact} />
+          </div>
+
+          <div className={styles.stats}>
+            <UserStats statistics={getStatistics(board)} />
           </div>
 
           <div className={styles.trends}>
