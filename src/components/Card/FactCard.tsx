@@ -4,16 +4,22 @@ import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { ChevronUp, ChevronDown, GripVertical, Trash2 } from "lucide-react";
-import { Fact } from "@/types";
+import { TFact } from "@/types";
 import styles from "./FactCard.module.scss";
 
-interface FactCardProps {
-  fact: Fact;
+interface TFactCardProps {
+  fact: TFact;
   onDelete?: (id: string) => void;
   onVote?: (id: string, delta: number) => void;
+  isNotDraggable?: boolean;
 }
 
-export default function FactCard({ fact, onDelete, onVote }: FactCardProps) {
+export default function FactCard({
+  fact,
+  onDelete,
+  onVote,
+  isNotDraggable,
+}: TFactCardProps) {
   const {
     attributes,
     listeners,
@@ -31,9 +37,11 @@ export default function FactCard({ fact, onDelete, onVote }: FactCardProps) {
 
   return (
     <div ref={setNodeRef} style={style} className={styles.card}>
-      <div className={styles.dragHandle} {...attributes} {...listeners}>
-        <GripVertical size={16} />
-      </div>
+      {!isNotDraggable && (
+        <div className={styles.dragHandle} {...attributes} {...listeners}>
+          <GripVertical size={16} />
+        </div>
+      )}
       <div className={styles.content}>
         <p>{fact.content}</p>
       </div>

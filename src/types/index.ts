@@ -1,20 +1,20 @@
-export type FactType = 'pro' | 'con';
+export type TFactType = 'pro' | 'con';
 
-export interface Fact {
+export interface TFact {
   id: string;
   content: string;
   score: number;
-  type: FactType;
+  type: TFactType;
 }
 
-export interface ColumnData {
-  id: FactType;
+export interface TColumnData {
+  id: TFactType;
   title: string;
-  facts: Fact[];
+  facts: TFact[];
 }
 
-export interface BoardState {
+export interface TBoardState {
   columns: {
-    [key in FactType]: ColumnData;
+    [key in TFactType]: TColumnData;
   };
 }

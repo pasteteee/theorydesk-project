@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import styles from "./LibraryFact.module.scss";
 
-interface LibraryFactProps {
+interface TLibraryFactProps {
   onAdd: (content: string) => void;
 }
 
-export default function LibraryFact({ onAdd }: LibraryFactProps) {
+export default function LibraryFact({ onAdd }: TLibraryFactProps) {
   const [content, setContent] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {

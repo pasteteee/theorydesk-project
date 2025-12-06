@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BoardState, Fact, FactType } from "@/types";
+import { TBoardState, TFact, TFactType } from "@/types";
 import { INITIAL_DATA } from "@/lib/data";
 
 const STORAGE_KEY = "theorydeck-state";
 
 export function useBoardStore() {
-  const [board, setBoard] = useState<BoardState | null>(null);
+  const [board, setBoard] = useState<TBoardState | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -28,7 +28,7 @@ export function useBoardStore() {
   const addFact = (content: string) => {
     if (!board) return;
 
-    const newFact: Fact = {
+    const newFact: TFact = {
       id: crypto.randomUUID(),
       content,
       score: 0,
@@ -56,7 +56,7 @@ export function useBoardStore() {
       const newColumns = { ...prev.columns };
 
       for (const colId in newColumns) {
-        const colKey = colId as FactType;
+        const colKey = colId as TFactType;
         newColumns[colKey] = {
           ...newColumns[colKey],
           facts: newColumns[colKey].facts.filter((f) => f.id !== factId),
@@ -73,7 +73,7 @@ export function useBoardStore() {
       const newColumns = { ...prev.columns };
 
       for (const colId in newColumns) {
-        const colKey = colId as FactType;
+        const colKey = colId as TFactType;
         newColumns[colKey] = {
           ...newColumns[colKey],
           facts: newColumns[colKey].facts.map((f) =>

@@ -21,8 +21,10 @@ import Column from "@components/CardList/Column";
 import LibraryFact from "@components/LibraryFact/LibraryFact";
 import FactCard from "@components/Card/FactCard";
 import Loader from "@components/Loader/Loader";
-import { Fact } from "@/types";
+import Trends from "@components/Trends/Trends";
+import { TBoardState, TFact } from "@/types";
 import styles from "./page.module.scss";
+import { getBestFact } from "@/utils/TheoryUtils";
 
 const dropAnimation: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
@@ -36,7 +38,7 @@ const dropAnimation: DropAnimation = {
 
 export default function Home() {
   const { board, setBoard, addFact, deleteFact, updateScore } = useBoardStore();
-  const [activeFact, setActiveFact] = React.useState<Fact | null>(null);
+  const [activeFact, setActiveFact] = React.useState<TFact | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -52,7 +54,7 @@ export default function Home() {
       return id;
     }
     return Object.keys(board.columns).find((key) =>
-      board.columns[key as "pro" | "con"].facts.find((f) => f.id === id)
+      board.columns[key as "pro" | "con"].facts.find((f: TFact) => f.id === id)
     );
   };
 
@@ -62,7 +64,7 @@ export default function Home() {
     const container = findContainer(id);
     if (container) {
       const fact = board.columns[container as "pro" | "con"].facts.find(
-        (f) => f.id === id
+        (f: TFact) => f.id === id
       );
       if (fact) setActiveFact(fact);
     }
@@ -84,8 +86,10 @@ export default function Home() {
       if (!prev) return null;
       const activeItems = prev.columns[activeContainer as "pro" | "con"].facts;
       const overItems = prev.columns[overContainer as "pro" | "con"].facts;
-      const activeIndex = activeItems.findIndex((f) => f.id === active.id);
-      const overIndex = overItems.findIndex((f) => f.id === overId);
+      const activeIndex = activeItems.findIndex(
+        (f: TFact) => f.id === active.id
+      );
+      const overIndex = overItems.findIndex((f: TFact) => f.id === overId);
 
       let newIndex;
       if (overId in prev.columns) {
@@ -108,7 +112,7 @@ export default function Home() {
             ...prev.columns[activeContainer as "pro" | "con"],
             facts: [
               ...prev.columns[activeContainer as "pro" | "con"].facts.filter(
-                (item) => item.id !== active.id
+                (item: TFact) => item.id !== active.id
               ),
             ],
           },
@@ -142,13 +146,13 @@ export default function Home() {
     if (activeContainer && overContainer && activeContainer === overContainer) {
       const activeIndex = board.columns[
         activeContainer as "pro" | "con"
-      ].facts.findIndex((f) => f.id === activeId);
+      ].facts.findIndex((f: TFact) => f.id === activeId);
       const overIndex = board.columns[
         overContainer as "pro" | "con"
-      ].facts.findIndex((f) => f.id === overId);
+      ].facts.findIndex((f: TFact) => f.id === overId);
 
       if (activeIndex !== overIndex) {
-        setBoard((prev) => {
+        setBoard((prev: TBoardState | null) => {
           if (!prev) return null;
           return {
             ...prev,
@@ -185,8 +189,16 @@ export default function Home() {
             <LibraryFact onAdd={addFact} />
           </div>
 
-          <div className={styles.trands}>
+          <div className={styles.filter}>
             <LibraryFact onAdd={addFact} />
+          </div>
+
+          <div className={styles.trends}>
+            <Trends
+              onDeleteFact={deleteFact}
+              onVoteFact={updateScore}
+              currentTheory={getBestFact(board)}
+            />
           </div>
 
           <div className={styles.pro}>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./Header.module.scss";
-import Search from "../Search/Search";
+import Search from "@components/Search/Search";
 import Link from "next/link";
 
 export default function Header() {

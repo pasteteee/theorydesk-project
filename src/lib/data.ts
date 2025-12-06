@@ -1,6 +1,6 @@
-import { BoardState } from '@/types';
+import { TBoardState } from '@/types';
 
-export const INITIAL_DATA: BoardState = {
+export const INITIAL_DATA: TBoardState = {
   columns: {
     pro: {
       id: 'pro',

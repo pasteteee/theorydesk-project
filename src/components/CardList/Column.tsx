@@ -5,13 +5,13 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { ColumnData } from "@/types";
+import { TColumnData } from "@/types";
 import FactCard from "../Card/FactCard";
 import styles from "./Column.module.scss";
 import clsx from "clsx";
 
-interface ColumnProps {
-  column: ColumnData;
+interface TColumnProps {
+  column: TColumnData;
   className?: string;
   onDeleteFact?: (id: string) => void;
   onVoteFact?: (id: string, delta: number) => void;
@@ -22,7 +22,7 @@ export default function Column({
   className,
   onDeleteFact,
   onVoteFact,
-}: ColumnProps) {
+}: TColumnProps) {
   const { setNodeRef } = useDroppable({
     id: column.id,
   });

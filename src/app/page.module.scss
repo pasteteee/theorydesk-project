@@ -11,16 +11,16 @@
     "con"
     "pro"
     "filter"
-    "trands"
+    "trends"
     "stats";
   gap: 1rem;
 
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 300px;
     grid-template-areas:
-      "library library trands"
+      "library library filter"
       "con pro stats"
-      "con pro filter";
+      "con pro trends";
   }
 
   .library {
@@ -35,8 +35,8 @@
     grid-area: con;
   }
 
-  .trands {
-    grid-area: trands;
+  .trends {
+    grid-area: trends;
   }
 
   .filters {
