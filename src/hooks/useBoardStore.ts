@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { TBoardState, TFact, TFactType } from "@/types";
 import { INITIAL_DATA } from "@/lib/data";

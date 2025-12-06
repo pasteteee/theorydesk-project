@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import styles from "./LibraryFact.module.scss";
