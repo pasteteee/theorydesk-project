@@ -10,6 +10,10 @@
   grid-area: trends;
   text-align: center;
 
+  @media (max-width: 1024px) {
+    height: 200px;
+  }
+
   h2 {
     font-size: 1.1rem;
     color: var(--primary);

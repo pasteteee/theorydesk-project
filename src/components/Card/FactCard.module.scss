@@ -10,6 +10,7 @@
   color: var(--text-main);
   transition: box-shadow 0.2s, border-color 0.2s;
   position: relative;
+  width: 100%;
 
   &:hover {
     border-color: var(--primary);
@@ -27,6 +28,7 @@
   cursor: grab;
   display: flex;
   align-items: center;
+  touch-action: none;
 
   &:hover {
     color: var(--text-main);
